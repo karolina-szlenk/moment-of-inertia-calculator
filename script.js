@@ -2,12 +2,19 @@ const figureImg = document.querySelector(".figure-img");
 const figures = document.querySelector("#figures");
 const options = document.querySelectorAll("option");
 const div = document.querySelector(".input-wrapper");
+const btn = document.querySelector(".btn");
+const result = document.querySelector(".result");
 
 const ring = {
   src: "./img/ring.png",
   values: {
     outsideDia: "D",
     insideDia: "d",
+  },
+  //temporaty equation
+  calc: function (a, b) {
+    console.log(a + b);
+    return a + b;
   },
 };
 
@@ -16,6 +23,11 @@ const circle = {
   values: {
     outsideDia: "D",
   },
+  //temporaty equation
+  calc: function (a) {
+    console.log(a);
+    return a;
+  },
 };
 
 const elipse = {
@@ -23,6 +35,11 @@ const elipse = {
   values: {
     a: "a",
     b: "b",
+  },
+  //temporaty equation
+  calc: function (a, b) {
+    console.log(a * b);
+    return a * b;
   },
 };
 
@@ -61,5 +78,5 @@ function createList(obj) {
 }
 
 window.onload = function () {
-    createList(ring.values);
+  createList(ring.values);
 };
