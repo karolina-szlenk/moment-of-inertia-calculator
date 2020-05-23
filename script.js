@@ -6,6 +6,7 @@ const btn = document.querySelector(".btn");
 const result = document.querySelector(".result");
 
 const ring = {
+  name: "ring",
   src: "./img/ring.png",
   values: {
     outsideDia: "D",
@@ -19,6 +20,7 @@ const ring = {
 };
 
 const circle = {
+  name: "circle",
   src: "./img/circle.png",
   values: {
     outsideDia: "D",
@@ -31,6 +33,7 @@ const circle = {
 };
 
 const elipse = {
+  name: "elipse",
   src: "./img/elipse.png",
   values: {
     a: "a",
@@ -58,7 +61,8 @@ function displayList(value) {
     if (value === figureList[i].src) {
       div.firstChild.remove();
       const values = figureList[i].values;
-      createList(values);
+      const ul = createList(values);
+      ul.setAttribute("id", figureList[i].name);
     }
   }
 }
