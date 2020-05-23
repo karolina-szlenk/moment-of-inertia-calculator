@@ -14,7 +14,7 @@ const ring = {
   },
   //temporaty equation
   calc: function (a, b) {
-    console.log(a + b);
+    // console.log(a + b);
     return a + b;
   },
 };
@@ -51,6 +51,7 @@ const figureList = [ring, circle, elipse];
 figureImg.setAttribute("src", "./img/ring.png");
 
 figures.addEventListener("change", function () {
+  result.innerHTML = "";
   const src = this.value;
   figureImg.setAttribute("src", src);
   displayList(this.value);
@@ -81,6 +82,31 @@ function createList(obj) {
   return ul;
 }
 
+btn.addEventListener("click", function () {
+  const ul = document.querySelector("ul").getAttribute("id");
+  const inputs = document.querySelectorAll('input[type="number"]');
+  let arr = [];
+  inputs.forEach(function (input) {
+    const parsedValue = parseInt(input.value);
+    arr.push(parsedValue);
+  });
+  calculate(ul, arr[0], arr[1]);
+});
+
+function calculate(ul, val1, val2) {
+  for (let i = 0; i < figureList.length; i++) {
+    if (figureList[i].name.indexOf(ul) !== -1) {
+      const res = figureList[i].calc(val1, val2);
+      if (isNaN(res)) {
+        result.innerHTML = ""  
+      } else {
+        result.append(res)
+      }
+    }
+  }
+}
+
 window.onload = function () {
-  createList(ring.values);
+  const ul = createList(ring.values);
+  ul.setAttribute("id", "ring");
 };
