@@ -13,9 +13,21 @@ const ring = {
     insideDia: "d",
   },
   //temporaty equation
-  calc: function (a, b) {
-    // console.log(a + b);
-    return a + b;
+  calc: function (D, d) {
+    let resultsArr = [];
+    const difference = Math.pow(D, 4) - Math.pow(d, 4);
+    const momentOfInertia = (3.14 * difference) / 64;
+    const sectionModulus = (3.14 * difference) / (64 * D);
+    const momentOfInertiaObj = {
+      name: "Moment of inertia",
+      result: momentOfInertia,
+    };
+    const sectionModulusObj = {
+      name: "Section modulus",
+      result: sectionModulus,
+    };
+    resultsArr.push(momentOfInertiaObj, sectionModulusObj);
+    return resultsArr;
   },
 };
 
@@ -96,14 +108,43 @@ btn.addEventListener("click", function () {
 function calculate(ul, val1, val2) {
   for (let i = 0; i < figureList.length; i++) {
     if (figureList[i].name.indexOf(ul) !== -1) {
-      const res = figureList[i].calc(val1, val2);
-      if (isNaN(res)) {
-        result.innerHTML = ""  
-      } else {
-        result.append(res)
-      }
+      const data = figureList[i].calc(val1, val2);
+      createResultsTable(data);
     }
   }
+}
+
+function createResultsTable(arr) {
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const trHead = document.createElement("tr");
+  const th1 = document.createElement("th");
+  th1.innerHTML = "Notation";
+  const th2 = document.createElement("th");
+  th2.innerHTML = "Value";
+  trHead.append(th1);
+  trHead.append(th2);
+  thead.append(trHead);
+  
+  const tbody = document.createElement("tbody");
+  arr.forEach(function (el) {
+    if (isNaN(el.result)) {
+      result.innerHTML = ""
+    } else {
+      const trBody = document.createElement("tr");
+      const td1 = document.createElement("td");
+      td1.innerHTML = el.name;
+      const td2 = document.createElement("td");
+      td2.innerHTML = el.result;
+      trBody.append(td1);
+      trBody.append(td2);
+      tbody.append(trBody);
+    }
+  });
+  
+  table.append(thead);
+  table.append(tbody);
+  result.append(table);
 }
 
 window.onload = function () {
