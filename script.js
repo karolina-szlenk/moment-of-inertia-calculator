@@ -5,8 +5,10 @@ const figureList = [ring, circle, elipse];
 const figureImg = document.querySelector(".figure-img");
 const figures = document.querySelector("#figures");
 const div = document.querySelector(".input-wrapper");
+const unitsWrapper = document.querySelector(".units-wrapper");
 const btn = document.querySelector(".btn");
 const result = document.querySelector(".result");
+const selector = document.querySelector(".unit-selector");
 
 //input data
 figureImg.setAttribute("src", "./img/ring.png");
@@ -55,6 +57,27 @@ function createList(obj) {
   return ul;
 }
 
+function createUnitOptions() {
+  const select = document.createElement("select");
+  select.setAttribute("class", "unit-selector");
+  const units = ["m", "cm", "mm"];
+  units.forEach(function (unit) {
+    const option = document.createElement("option");
+    option.setAttribute("class", "unit-option");
+    option.setAttribute("id", unit);
+    option.value = unit;
+    option.innerHTML = unit;
+    select.append(option);
+  });
+  unitsWrapper.append(select);
+}
+
+function getUnitInTable() {
+  const selector = document.querySelector(".unit-selector");
+  const res = selector.options[selector.selectedIndex].value;
+  return res;
+}
+
 function calculateResults(ul, val1, val2) {
   for (let i = 0; i < figureList.length; i++) {
     if (figureList[i].name.indexOf(ul) !== -1) {
@@ -77,6 +100,7 @@ function checkInputContent(arr) {
 }
 
 function getResultsTable(arr) {
+  const unit = getUnitInTable();
   const table = document.createElement("table");
   const thead = document.createElement("thead");
   const trHead = document.createElement("tr");
@@ -84,8 +108,11 @@ function getResultsTable(arr) {
   th1.innerHTML = "Notation";
   const th2 = document.createElement("th");
   th2.innerHTML = "Value";
+  const th3 = document.createElement("th");
+  th3.innerHTML = "Unit";
   trHead.append(th1);
   trHead.append(th2);
+  trHead.append(th3);
   thead.append(trHead);
 
   const tbody = document.createElement("tbody");
@@ -95,8 +122,11 @@ function getResultsTable(arr) {
     td1.innerHTML = el.name;
     const td2 = document.createElement("td");
     td2.innerHTML = el.result;
+    const td3 = document.createElement("td");
+    td3.innerHTML = unit;
     trBody.append(td1);
     trBody.append(td2);
+    trBody.append(td3);
     tbody.append(trBody);
   });
 
@@ -135,4 +165,5 @@ btn.addEventListener("click", function () {
 window.onload = function () {
   const ul = createList(ring.values);
   ul.setAttribute("id", "ring");
+  createUnitOptions();
 };
