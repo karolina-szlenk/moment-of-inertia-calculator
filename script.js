@@ -12,7 +12,6 @@ const ring = {
     outsideDia: "D",
     insideDia: "d",
   },
-  //temporaty equation
   calc: function (D, d) {
     let resultsArr = [];
     const difference = Math.pow(D, 4) - Math.pow(d, 4);
@@ -95,14 +94,18 @@ function createList(obj) {
 }
 
 btn.addEventListener("click", function () {
-  const ul = document.querySelector("ul").getAttribute("id");
-  const inputs = document.querySelectorAll('input[type="number"]');
-  let arr = [];
-  inputs.forEach(function (input) {
-    const parsedValue = parseInt(input.value);
-    arr.push(parsedValue);
-  });
-  calculate(ul, arr[0], arr[1]);
+  if (result.childElementCount === 1) {
+    return;
+  } else {
+    const ul = document.querySelector("ul").getAttribute("id");
+    const inputs = document.querySelectorAll('input[type="number"]');
+    let arr = [];
+    inputs.forEach(function (input) {
+      const parsedValue = parseInt(input.value);
+      arr.push(parsedValue);
+    });
+    calculate(ul, arr[0], arr[1]);
+  }
 });
 
 function calculate(ul, val1, val2) {
@@ -115,22 +118,27 @@ function calculate(ul, val1, val2) {
 }
 
 function createResultsTable(arr) {
-  const table = document.createElement("table");
-  const thead = document.createElement("thead");
-  const trHead = document.createElement("tr");
-  const th1 = document.createElement("th");
-  th1.innerHTML = "Notation";
-  const th2 = document.createElement("th");
-  th2.innerHTML = "Value";
-  trHead.append(th1);
-  trHead.append(th2);
-  thead.append(trHead);
-  
-  const tbody = document.createElement("tbody");
-  arr.forEach(function (el) {
-    if (isNaN(el.result)) {
-      result.innerHTML = ""
-    } else {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj = arr[i];
+  }
+  if (isNaN(obj.result)) {
+    console.log(obj.result);
+    result.innerHTML = "";
+  } else {
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const trHead = document.createElement("tr");
+    const th1 = document.createElement("th");
+    th1.innerHTML = "Notation";
+    const th2 = document.createElement("th");
+    th2.innerHTML = "Value";
+    trHead.append(th1);
+    trHead.append(th2);
+    thead.append(trHead);
+
+    const tbody = document.createElement("tbody");
+    arr.forEach(function (el) {
       const trBody = document.createElement("tr");
       const td1 = document.createElement("td");
       td1.innerHTML = el.name;
@@ -139,15 +147,16 @@ function createResultsTable(arr) {
       trBody.append(td1);
       trBody.append(td2);
       tbody.append(trBody);
-    }
-  });
-  
-  table.append(thead);
-  table.append(tbody);
-  result.append(table);
+    });
+
+    table.append(thead);
+    table.append(tbody);
+    result.append(table);
+  }
 }
 
 window.onload = function () {
   const ul = createList(ring.values);
   ul.setAttribute("id", "ring");
 };
+
