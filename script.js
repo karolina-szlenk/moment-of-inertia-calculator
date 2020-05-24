@@ -5,6 +5,24 @@ const div = document.querySelector(".input-wrapper");
 const btn = document.querySelector(".btn");
 const result = document.querySelector(".result");
 
+const notationName = {
+  momOfin: "I<sub>x</sub>",
+  secMod: "W<sub>x</sub>",
+};
+
+function getNotationsArr(arr, momentOfInertia, sectionModulus) {
+  const momentOfInertiaObj = {
+    name: notationName.momOfin,
+    result: momentOfInertia.toFixed(2),
+  };
+  const sectionModulusObj = {
+    name: notationName.secMod,
+    result: sectionModulus.toFixed(2),
+  };
+  arr.push(momentOfInertiaObj, sectionModulusObj);
+  return arr;
+}
+
 const ring = {
   name: "ring",
   src: "./img/ring.png",
@@ -15,17 +33,10 @@ const ring = {
   calc: function (D, d) {
     let resultsArr = [];
     const difference = Math.pow(D, 4) - Math.pow(d, 4);
-    const momentOfInertia = (3.14 * difference) / 64;
-    const sectionModulus = (3.14 * difference) / (64 * D);
-    const momentOfInertiaObj = {
-      name: "Moment of inertia",
-      result: momentOfInertia,
-    };
-    const sectionModulusObj = {
-      name: "Section modulus",
-      result: sectionModulus,
-    };
-    resultsArr.push(momentOfInertiaObj, sectionModulusObj);
+    const multiPi = 3.14 * difference;
+    const momentOfInertia = multiPi / 64;
+    const sectionModulus = multiPi / (64 * D);
+    getNotationsArr(resultsArr, momentOfInertia, sectionModulus);
     return resultsArr;
   },
 };
@@ -36,10 +47,14 @@ const circle = {
   values: {
     outsideDia: "D",
   },
-  //temporaty equation
-  calc: function (a) {
-    console.log(a);
-    return a;
+  calc: function (D) {
+    let resultsArr = [];
+    const raisedPower = Math.pow(D, 3)
+    const multiPi = 3.14 * raisedPower;
+    const momentOfInertia = (multiPi * D) / 64;
+    const sectionModulus = multiPi / 32;
+    getNotationsArr(resultsArr, momentOfInertia, sectionModulus);
+    return resultsArr;
   },
 };
 
@@ -50,10 +65,14 @@ const elipse = {
     a: "a",
     b: "b",
   },
-  //temporaty equation
   calc: function (a, b) {
-    console.log(a * b);
-    return a * b;
+    let resultsArr = [];
+    const raisedPower = Math.pow(a, 2)
+    const multiPiandB = 3.14 * b* raisedPower;
+    const momentOfInertia = (multiPiandB * a) / 4;
+    const sectionModulus = multiPiandB / 4;
+    getNotationsArr(resultsArr, momentOfInertia, sectionModulus);
+    return resultsArr;
   },
 };
 
@@ -101,9 +120,9 @@ function checkInputContent(arr) {
     obj = arr[i];
   }
   if (isNaN(obj.result)) {
-    clearResult()
+    clearResult();
   } else {
-    getResultsTable(arr)
+    getResultsTable(arr);
   }
 }
 
@@ -137,11 +156,11 @@ function getResultsTable(arr) {
 }
 
 function clearResult() {
-  result.innerHTML = ""
+  result.innerHTML = "";
 }
 
 figures.addEventListener("change", function () {
-  clearResult()
+  clearResult();
   const src = this.value;
   figureImg.setAttribute("src", src);
   displayList(this.value);
@@ -155,7 +174,7 @@ btn.addEventListener("click", function () {
     const inputs = document.querySelectorAll('input[type="number"]');
     let arr = [];
     inputs.forEach(function (input) {
-      input.addEventListener("keypress", clearResult)
+      input.addEventListener("keypress", clearResult);
       const parsedValue = parseInt(input.value);
       arr.push(parsedValue);
     });
