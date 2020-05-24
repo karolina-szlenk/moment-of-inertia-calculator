@@ -61,13 +61,6 @@ const figureList = [ring, circle, elipse];
 
 figureImg.setAttribute("src", "./img/ring.png");
 
-figures.addEventListener("change", function () {
-  result.innerHTML = "";
-  const src = this.value;
-  figureImg.setAttribute("src", src);
-  displayList(this.value);
-});
-
 function displayList(value) {
   for (let i = 0; i < figureList.length; i++) {
     if (value === figureList[i].src) {
@@ -93,51 +86,66 @@ function createList(obj) {
   return ul;
 }
 
-function calculate(ul, val1, val2) {
+function calculateResults(ul, val1, val2) {
   for (let i = 0; i < figureList.length; i++) {
     if (figureList[i].name.indexOf(ul) !== -1) {
       const data = figureList[i].calc(val1, val2);
-      createResultsTable(data);
+      checkInputContent(data);
     }
   }
 }
 
-function createResultsTable(arr) {
+function checkInputContent(arr) {
   let obj = {};
   for (let i = 0; i < arr.length; i++) {
     obj = arr[i];
   }
   if (isNaN(obj.result)) {
-    result.innerHTML = "";
+    clearResult()
   } else {
-    const table = document.createElement("table");
-    const thead = document.createElement("thead");
-    const trHead = document.createElement("tr");
-    const th1 = document.createElement("th");
-    th1.innerHTML = "Notation";
-    const th2 = document.createElement("th");
-    th2.innerHTML = "Value";
-    trHead.append(th1);
-    trHead.append(th2);
-    thead.append(trHead);
-
-    const tbody = document.createElement("tbody");
-    arr.forEach(function (el) {
-      const trBody = document.createElement("tr");
-      const td1 = document.createElement("td");
-      td1.innerHTML = el.name;
-      const td2 = document.createElement("td");
-      td2.innerHTML = el.result;
-      trBody.append(td1);
-      trBody.append(td2);
-      tbody.append(trBody);
-    });
-
-    table.append(thead);
-    table.append(tbody);
-    result.append(table);
+    getResultsTable(arr)
   }
 }
+
+function getResultsTable(arr) {
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const trHead = document.createElement("tr");
+  const th1 = document.createElement("th");
+  th1.innerHTML = "Notation";
+  const th2 = document.createElement("th");
+  th2.innerHTML = "Value";
+  trHead.append(th1);
+  trHead.append(th2);
+  thead.append(trHead);
+
+  const tbody = document.createElement("tbody");
+  arr.forEach(function (el) {
+    const trBody = document.createElement("tr");
+    const td1 = document.createElement("td");
+    td1.innerHTML = el.name;
+    const td2 = document.createElement("td");
+    td2.innerHTML = el.result;
+    trBody.append(td1);
+    trBody.append(td2);
+    tbody.append(trBody);
+  });
+
+  table.append(thead);
+  table.append(tbody);
+  result.append(table);
+}
+
+function clearResult() {
+  result.innerHTML = ""
+}
+
+figures.addEventListener("change", function () {
+  clearResult()
+  const src = this.value;
+  figureImg.setAttribute("src", src);
+  displayList(this.value);
+});
 
 btn.addEventListener("click", function () {
   if (result.childElementCount === 1) {
@@ -147,13 +155,11 @@ btn.addEventListener("click", function () {
     const inputs = document.querySelectorAll('input[type="number"]');
     let arr = [];
     inputs.forEach(function (input) {
-      input.addEventListener("keypress", function () {
-        result.innerHTML = "";
-      });
+      input.addEventListener("keypress", clearResult)
       const parsedValue = parseInt(input.value);
       arr.push(parsedValue);
     });
-    calculate(ul, arr[0], arr[1]);
+    calculateResults(ul, arr[0], arr[1]);
   }
 });
 
