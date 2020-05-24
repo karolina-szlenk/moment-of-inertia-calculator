@@ -93,21 +93,6 @@ function createList(obj) {
   return ul;
 }
 
-btn.addEventListener("click", function () {
-  if (result.childElementCount === 1) {
-    return;
-  } else {
-    const ul = document.querySelector("ul").getAttribute("id");
-    const inputs = document.querySelectorAll('input[type="number"]');
-    let arr = [];
-    inputs.forEach(function (input) {
-      const parsedValue = parseInt(input.value);
-      arr.push(parsedValue);
-    });
-    calculate(ul, arr[0], arr[1]);
-  }
-});
-
 function calculate(ul, val1, val2) {
   for (let i = 0; i < figureList.length; i++) {
     if (figureList[i].name.indexOf(ul) !== -1) {
@@ -123,7 +108,6 @@ function createResultsTable(arr) {
     obj = arr[i];
   }
   if (isNaN(obj.result)) {
-    console.log(obj.result);
     result.innerHTML = "";
   } else {
     const table = document.createElement("table");
@@ -155,8 +139,25 @@ function createResultsTable(arr) {
   }
 }
 
+btn.addEventListener("click", function () {
+  if (result.childElementCount === 1) {
+    return;
+  } else {
+    const ul = document.querySelector("ul").getAttribute("id");
+    const inputs = document.querySelectorAll('input[type="number"]');
+    let arr = [];
+    inputs.forEach(function (input) {
+      input.addEventListener("keypress", function () {
+        result.innerHTML = "";
+      });
+      const parsedValue = parseInt(input.value);
+      arr.push(parsedValue);
+    });
+    calculate(ul, arr[0], arr[1]);
+  }
+});
+
 window.onload = function () {
   const ul = createList(ring.values);
   ul.setAttribute("id", "ring");
 };
-
