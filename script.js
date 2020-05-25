@@ -116,7 +116,7 @@ function getResultsTable(arr) {
   thead.append(trHead);
 
   const tbody = document.createElement("tbody");
-  arr.forEach(function (el) {
+  arr.forEach(function (el, index) {
     const trBody = document.createElement("tr");
     const td1 = document.createElement("td");
     td1.innerHTML = el.name;
@@ -124,6 +124,7 @@ function getResultsTable(arr) {
     td2.innerHTML = el.result;
     const td3 = document.createElement("td");
     td3.innerHTML = unit;
+    td3.setAttribute("id", `unit${index}`);
     trBody.append(td1);
     trBody.append(td2);
     trBody.append(td3);
@@ -137,6 +138,22 @@ function getResultsTable(arr) {
 
 function clearResult() {
   result.innerHTML = "";
+}
+
+function changeUnit() {
+  const selector = document.querySelector(".unit-selector");
+  selector.addEventListener("change", clearResult)
+}
+
+function addRaisedPower() {
+  const unit0 = document.querySelector("#unit0")
+  const txt0 = unit0.innerHTML
+  const raisedPowerValue0 = txt0 + "<sup>4<sup>"
+  unit0.innerHTML = raisedPowerValue0;
+  const unit1 = document.querySelector("#unit1")
+  const txt1 = unit1.innerHTML
+  const raisedPowerValue1 = txt1 + "<sup>3<sup>"
+  unit1.innerHTML = raisedPowerValue1;
 }
 
 figures.addEventListener("change", function () {
@@ -159,6 +176,8 @@ btn.addEventListener("click", function () {
       arr.push(parsedValue);
     });
     calculateResults(ul, arr[0], arr[1]);
+    addRaisedPower()
+    changeUnit()
   }
 });
 
@@ -167,3 +186,5 @@ window.onload = function () {
   ul.setAttribute("id", "ring");
   createUnitOptions();
 };
+
+
