@@ -45,13 +45,17 @@ function displayList(value) {
 
 function createList(obj) {
   const ul = document.createElement("ul");
+  ul.innerHTML = "Enter the data according to the drawing:"
   for (let value of Object.values(obj)) {
+    const li = document.createElement("li");
+    li.classList.add("input-item");
     const input = document.createElement("input");
     input.setAttribute("type", "number");
     const label = document.createElement("label");
     label.innerHTML = value;
-    ul.append(label);
-    ul.append(input);
+    li.append(label);
+    li.append(input);
+    ul.append(li);
     div.append(ul);
   }
   return ul;
@@ -60,6 +64,8 @@ function createList(obj) {
 function createUnitOptions() {
   const select = document.createElement("select");
   select.setAttribute("class", "unit-selector");
+  const label = document.createElement("label");
+  label.innerHTML = "Choose a unit:";
   const units = ["m", "cm", "mm"];
   units.forEach(function (unit) {
     const option = document.createElement("option");
@@ -69,6 +75,7 @@ function createUnitOptions() {
     option.innerHTML = unit;
     select.append(option);
   });
+  unitsWrapper.append(label);
   unitsWrapper.append(select);
 }
 
