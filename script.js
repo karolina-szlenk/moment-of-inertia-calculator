@@ -142,17 +142,17 @@ function clearResult() {
 
 function changeUnit() {
   const selector = document.querySelector(".unit-selector");
-  selector.addEventListener("change", clearResult)
+  selector.addEventListener("change", clearResult);
 }
 
 function addRaisedPower() {
-  const unit0 = document.querySelector("#unit0")
-  const txt0 = unit0.innerHTML
-  const raisedPowerValue0 = txt0 + "<sup>4<sup>"
+  const unit0 = document.querySelector("#unit0");
+  const txt0 = unit0.innerHTML;
+  const raisedPowerValue0 = txt0 + "<sup>4<sup>";
   unit0.innerHTML = raisedPowerValue0;
-  const unit1 = document.querySelector("#unit1")
-  const txt1 = unit1.innerHTML
-  const raisedPowerValue1 = txt1 + "<sup>3<sup>"
+  const unit1 = document.querySelector("#unit1");
+  const txt1 = unit1.innerHTML;
+  const raisedPowerValue1 = txt1 + "<sup>3<sup>";
   unit1.innerHTML = raisedPowerValue1;
 }
 
@@ -176,8 +176,8 @@ btn.addEventListener("click", function () {
       arr.push(parsedValue);
     });
     calculateResults(ul, arr[0], arr[1]);
-    addRaisedPower()
-    changeUnit()
+    addRaisedPower();
+    changeUnit();
   }
 });
 
@@ -186,5 +186,3 @@ window.onload = function () {
   ul.setAttribute("id", "ring");
   createUnitOptions();
 };
-
-
