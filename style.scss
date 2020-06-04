@@ -1,0 +1,47 @@
+$main-font: "Merienda", cursive;
+$secondary-font: "Muli", sans-serif;
+$bg-color: #332e2b;
+$dropdown-color: #928880;
+$btn-color: #de742f;
+$txt-color: #fff;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $secondary-font;
+  font-size: 18px;
+  width: 100%;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90vw;
+  text-align: center;
+  h2 {
+    font-family: $main-font;
+    font-size: 2rem;
+    padding: 3rem 0;
+  }
+
+  .figure-img {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .input-wrapper {
+      display: flex;
+      flex-direction: column;
+  }
+}
+

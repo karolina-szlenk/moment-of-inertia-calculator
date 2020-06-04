@@ -1,0 +1,47 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Muli", sans-serif;
+  font-size: 18px;
+  width: 100%;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90vw;
+  text-align: center;
+}
+
+.container h2 {
+  font-family: "Merienda", cursive;
+  font-size: 2rem;
+  padding: 3rem 0;
+}
+
+.container .figure-img {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.container .input-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+/*# sourceMappingURL=style.css.map */

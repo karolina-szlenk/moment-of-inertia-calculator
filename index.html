@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moment of inertia</title>
-    <link rel="stylesheet" href="./style.scss">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Moment of inertia - calculator</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Muli&display=swap" rel="stylesheet">
+    </head>
     <body>
-        <h2>Moment of inertia calculator</h2>
-        <form>
-            <label for="figures">Choose a figure:</label>
-            <select name="figures" id="figures">
-                <option value="./img/ring.png">Ring</option>
-                <option value="./img/circle.png">Circle</option>
-                <option value="./img/elipse.png">Elipse</option>
-            </select>
+        <div class="container">
+            <h2>Moment of inertia calculator</h2>
+            <form>
+                <label for="figures">Choose a figure:</label>
+                <select name="figures" id="figures">
+                    <option value="./img/ring.png">Ring</option>
+                    <option value="./img/circle.png">Circle</option>
+                    <option value="./img/elipse.png">Elipse</option>
+                </select> 
+            </form> 
             <img class="figure-img"></img>
-        </form> 
-        <div class="input-wrapper"></div>
-        <div class="units-wrapper"></div>
-        <input type="submit" class="btn" value="Calculate">
-        <div class="result"></div>
+            <div class="input-wrapper"></div>
+            <div class="units-wrapper"></div>
+            <input type="submit" class="btn" value="Calculate">
+            <div class="result"></div>
+        </div>
 
-        <!-------SCRIPT-------> 
+        <!-------SCRIPTS-------> 
         <script type="module" src="script.js"></script>
         <script type="module" src="figures.js"></script>       
     </body>
