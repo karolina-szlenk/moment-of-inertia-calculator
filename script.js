@@ -45,7 +45,9 @@ function displayList(value) {
 
 function createList(obj) {
   const ul = document.createElement("ul");
-  ul.innerHTML = "Enter the data according to the drawing:"
+  const txt = document.createElement("p");
+  txt.innerHTML = "Enter the data according to the drawing:"
+  ul.append(txt);
   for (let value of Object.values(obj)) {
     const li = document.createElement("li");
     li.classList.add("input-item");
@@ -65,7 +67,7 @@ function createUnitOptions() {
   const select = document.createElement("select");
   select.setAttribute("class", "unit-selector");
   const label = document.createElement("label");
-  label.innerHTML = "Choose a unit:";
+  label.innerHTML = "Choose an unit:";
   const units = ["m", "cm", "mm"];
   units.forEach(function (unit) {
     const option = document.createElement("option");
