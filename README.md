@@ -1,6 +1,6 @@
 ### Moment of inertia - calculator
 
-![moi-calc](https://i.postimg.cc/9FdRd0WN/Screenshot-from-2020-06-06-19-18-09.png)
+![moi-calc](https://i.postimg.cc/vBWjbCFB/moi.png)
 
 ## Table of contents
 * [General info](#general-info)
