@@ -8,7 +8,6 @@ const div = document.querySelector(".input-wrapper");
 const unitsWrapper = document.querySelector(".units-wrapper");
 const btn = document.querySelector(".btn");
 const result = document.querySelector(".result");
-const selector = document.querySelector(".unit-selector");
 
 //input data
 figureImg.setAttribute("src", "./img/ring.png");
@@ -46,16 +45,14 @@ function displayList(value) {
 function createList(obj) {
   const ul = document.createElement("ul");
   const txt = document.createElement("p");
-  txt.innerHTML = "Enter the data according to the drawing:"
+  txt.innerHTML = "Enter the data according to the drawing:";
   ul.append(txt);
   for (let value of Object.values(obj)) {
     const li = document.createElement("li");
     li.classList.add("input-item");
     const input = document.createElement("input");
     input.setAttribute("type", "number");
-    const label = document.createElement("label");
-    label.innerHTML = value;
-    li.append(label);
+    input.setAttribute("placeholder", value);
     li.append(input);
     ul.append(li);
     div.append(ul);
@@ -106,6 +103,7 @@ function checkInputContent(arr) {
   } else {
     getResultsTable(arr);
   }
+  console.log(obj)
 }
 
 function getResultsTable(arr) {
@@ -147,6 +145,7 @@ function getResultsTable(arr) {
 
 function clearResult() {
   result.innerHTML = "";
+  return false;
 }
 
 function changeUnit() {
@@ -182,8 +181,10 @@ btn.addEventListener("click", function () {
     inputs.forEach(function (input) {
       input.addEventListener("keypress", clearResult);
       const parsedValue = parseInt(input.value);
+      console.log(parsedValue)
       arr.push(parsedValue);
     });
+    
     calculateResults(ul, arr[0], arr[1]);
     addRaisedPower();
     changeUnit();

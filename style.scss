@@ -6,7 +6,11 @@ $dropdown-color: #928880;
 $btn-color: #de742f;
 $txt-color: #fff;
 $radius: 0.6rem;
-$margin-bottom: 1rem;
+$margin-bottom: 2rem;
+$margin-cntr: 0 auto;
+$padding: 1rem 0;
+$container-width: 435px;
+$flex-disp: flex;
 
 * {
   box-sizing: border-box;
@@ -17,7 +21,7 @@ $margin-bottom: 1rem;
 body {
   background-color: $bg-color;
   color: $txt-color;
-  font-family: $main-font;
+  font-family: $secondary-font;
   font-size: $font-size;
   width: 100%;
   font-weight: bold;
@@ -36,16 +40,16 @@ h2 {
 }
 
 .container {
-  margin: 0 auto;
+  margin: $margin-cntr;
   width: 90vw;
   text-align: center;
 
   form {
-    display: flex;
+    display: $flex-disp;
     justify-content: space-between;
-    margin: 0 auto;
-    max-width: 435px;
+    margin: $margin-cntr;
     margin-bottom: $margin-bottom;
+    max-width: $container-width;
 
     label {
       align-self: center;
@@ -53,19 +57,19 @@ h2 {
   }
 
   .figure-img {
+    border-radius: $radius;
     display: block;
     height: auto;
-    margin: 0 auto;
-    max-width: 100%;
-    border-radius: $radius;
+    margin: $margin-cntr;
     margin-bottom: $margin-bottom;
+    max-width: 100%;
   }
 
   .input-wrapper {
-    display: flex;
+    display: $flex-disp;
     flex-direction: column;
-    margin: 0 auto;
-    max-width: 435px;
+    margin: $margin-cntr;
+    max-width: $container-width;
 
     ul {
       text-align: left;
@@ -75,23 +79,20 @@ h2 {
       }
 
       .input-item {
-        display: flex;
-        justify-content: space-between;
+        display: $flex-disp;
         flex-direction: column;
-        margin-bottom: $margin-bottom;
-      }
-      label {
+        justify-content: space-between;
         margin-bottom: $margin-bottom;
       }
     }
   }
 
   .units-wrapper {
-    display: flex;
+    display: $flex-disp;
     justify-content: space-between;
-    margin: 0 auto;
-    max-width: 435px;
+    margin: $margin-cntr;
     margin-bottom: $margin-bottom;
+    max-width: $container-width;
 
     label {
       align-self: center;
@@ -99,21 +100,16 @@ h2 {
   }
 
   .result {
-    margin: 0 auto;
     background-color: $txt-color;
-    color: $bg-color;
     border-radius: $radius;
+    color: $bg-color;
+    margin: $margin-cntr;
     margin-bottom: 3rem;
-    width: 435px;
+    max-width: $container-width;
+
     table {
       width: 100%;
     }
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .container {
-    width: 435px;
   }
 }
 
@@ -121,40 +117,39 @@ input,
 select {
   border-radius: $radius;
   border: none;
+  font-family: $secondary-font;
+  font-size: $font-size;
+  font-weight: bold;
+  line-height: 2rem;
   outline: none;
   padding: 0.4rem 0.6rem;
-  font-size: $font-size;
-  line-height: 2rem;
-  font-weight: bold;
-  font-family: $main-font;
 }
 
 input[type="number"] {
+  background-image: linear-gradient(to bottom, $txt-color 0%, #e5e5e5 100%);
   border: 1px solid $dropdown-color;
   width: 100%;
-  background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
 select {
-  background-color: $dropdown-color;
-  color: $txt-color;
-  display: block;
-  width: 7rem;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin: 0;
   appearance: none;
+  background-color: $dropdown-color;
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiICAgaW5rc2NhcGU6dmVyc2lvbj0iMS4wICg2ZTNlNTI0NmEwLCAyMDIwLTA1LTA3KSIgICBzb2RpcG9kaTpkb2NuYW1lPSJkcm9wLWRvd24tYXJyb3cuc3ZnIiAgIHhtbDpzcGFjZT0icHJlc2VydmUiICAgdmlld0JveD0iMCAwIDI1NSAxMjcuNSIgICBoZWlnaHQ9IjEyNy41IiAgIHdpZHRoPSIyNTUiICAgeT0iMHB4IiAgIHg9IjBweCIgICBpZD0iQ2FwYV8xIiAgIHZlcnNpb249IjEuMSI+PG1ldGFkYXRhICAgaWQ9Im1ldGFkYXRhOTY3Ij48cmRmOlJERj48Y2M6V29yayAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjxkYzp0aXRsZT48L2RjOnRpdGxlPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcyAgIGlkPSJkZWZzOTY1IiAvPjxzb2RpcG9kaTpuYW1lZHZpZXcgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJnOTMwIiAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjAiICAgaW5rc2NhcGU6d2luZG93LXk9IjAiICAgaW5rc2NhcGU6d2luZG93LXg9IjAiICAgaW5rc2NhcGU6Y3k9Ijg3LjgwNjYwNCIgICBpbmtzY2FwZTpjeD0iMTI3LjUiICAgaW5rc2NhcGU6em9vbT0iMy4zMjU0OTAyIiAgIGZpdC1tYXJnaW4tYm90dG9tPSIwIiAgIGZpdC1tYXJnaW4tcmlnaHQ9IjAiICAgZml0LW1hcmdpbi1sZWZ0PSIwIiAgIGZpdC1tYXJnaW4tdG9wPSIwIiAgIHNob3dncmlkPSJmYWxzZSIgICBpZD0ibmFtZWR2aWV3OTYzIiAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjYzNCIgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE2MzYiICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMCIgICBndWlkZXRvbGVyYW5jZT0iMTAiICAgZ3JpZHRvbGVyYW5jZT0iMTAiICAgb2JqZWN0dG9sZXJhbmNlPSIxMCIgICBib3JkZXJvcGFjaXR5PSIxIiAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IiAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIgLz48ZyAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsLTYzLjc1KSIgICBzdHlsZT0ib3BhY2l0eTowLjk5OCIgICBpZD0iZzkzMCI+PGcgICBzdHlsZT0iZmlsbDojZmZmZmZmIiAgIGlkPSJhcnJvdy1kcm9wLWRvd24iPjxwb2x5Z29uICAgc3R5bGU9ImZpbGw6I2ZmZmZmZiIgICBpZD0icG9seWdvbjkyNyIgICBwb2ludHM9IjI1NSw2My43NSAwLDYzLjc1IDEyNy41LDE5MS4yNSAiIC8+PC9nPjwvZz48ZyAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsLTYzLjc1KSIgICBpZD0iZzkzMiI+PC9nPjxnICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwtNjMuNzUpIiAgIGlkPSJnOTM0Ij48L2c+PGcgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC02My43NSkiICAgaWQ9Imc5MzYiPjwvZz48ZyAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsLTYzLjc1KSIgICBpZD0iZzkzOCI+PC9nPjxnICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwtNjMuNzUpIiAgIGlkPSJnOTQwIj48L2c+PGcgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC02My43NSkiICAgaWQ9Imc5NDIiPjwvZz48ZyAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsLTYzLjc1KSIgICBpZD0iZzk0NCI+PC9nPjxnICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwtNjMuNzUpIiAgIGlkPSJnOTQ2Ij48L2c+PGcgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC02My43NSkiICAgaWQ9Imc5NDgiPjwvZz48ZyAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsLTYzLjc1KSIgICBpZD0iZzk1MCI+PC9nPjxnICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwtNjMuNzUpIiAgIGlkPSJnOTUyIj48L2c+PGcgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC02My43NSkiICAgaWQ9Imc5NTQiPjwvZz48ZyAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsLTYzLjc1KSIgICBpZD0iZzk1NiI+PC9nPjxnICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwtNjMuNzUpIiAgIGlkPSJnOTU4Ij48L2c+PGcgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC02My43NSkiICAgaWQ9Imc5NjAiPjwvZz48L3N2Zz4=);
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
+  box-sizing: border-box;
+  color: $txt-color;
+  display: block;
+  margin: 0;
+  max-width: 100%;
+  width: 7rem;
 }
 
 select:focus,
 input[type="number"]:focus {
   border-color: $btn-color;
   box-shadow: 0 0 1px 1px $btn-color;
-  box-shadow: 0 0 0 1px -moz-mac-focusring;
   outline: none;
 }
 
@@ -162,11 +157,11 @@ input[type="number"]:focus {
   background-color: $btn-color;
   color: $txt-color;
   cursor: pointer;
-  text-align: center;
   margin: 0 auto;
-  width: 100%;
-  max-width: 435px;
   margin-bottom: 3rem;
+  max-width: $container-width;
+  width: 100%;
+  text-align: center;
 }
 
 .btn:hover {
@@ -175,4 +170,29 @@ input[type="number"]:focus {
 
 .btn:active {
   opacity: 0.4;
+}
+
+th {
+  color: $btn-color;
+  font-size: 1.2rem;
+  padding: $padding;
+  width: 33.33%;
+}
+
+td {
+  padding: $padding;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: $container-width;
+  }
 }
