@@ -52,3 +52,37 @@ export const elipse = {
     return resultsArr;
   },
 };
+
+export const square = {
+  name: "square",
+  src: "./img/default.jpg",
+  values: {
+    H: "H",
+  },
+  calc: function (H) {
+    let resultsArr = [];
+    const raisedPower = Math.pow(H, 3);
+    const momentOfInertia = (raisedPower * H)/12;
+    const sectionModulus = raisedPower/6;
+    getNotationsArr(resultsArr, momentOfInertia, sectionModulus);
+    return resultsArr;
+  },
+};
+
+export const hollowSquare = {
+  name: "hollow square",
+  src: "./img/default.jpg",
+  values: {
+    H: "H",
+    h: "h",
+  },
+  calc: function (H, h) {
+    let resultsArr = [];
+    const raisedPowerOut = Math.pow(H, 4);
+    const raisedPowerIn = Math.pow(h, 4);
+    const momentOfInertia = (raisedPowerOut - raisedPowerIn)/12;
+    const sectionModulus = (raisedPowerOut - raisedPowerIn)/(6*H);
+    getNotationsArr(resultsArr, momentOfInertia, sectionModulus);
+    return resultsArr;
+  },
+};
