@@ -86,3 +86,20 @@ export const hollowSquare = {
     return resultsArr;
   },
 };
+
+export const rectangle = {
+  name: "rectangle",
+  src: "./img/default.jpg",
+  values: {
+    b: "b",
+    h: "h",
+  },
+  calc: function (b, h) {
+    let resultsArr = [];
+    const raisedPower = Math.pow(h, 2);
+    const momentOfInertia = (b*raisedPower)*h/12;
+    const sectionModulus = (b*raisedPower)/6;
+    getNotationsArr(resultsArr, momentOfInertia, sectionModulus);
+    return resultsArr;
+  },
+};

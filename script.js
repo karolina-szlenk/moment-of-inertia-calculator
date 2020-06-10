@@ -1,5 +1,5 @@
-import { ring, circle, elipse, square, hollowSquare } from "./figures.js";
-const figureList = [ring, circle, elipse, square, hollowSquare];
+import { ring, circle, elipse, square, hollowSquare, rectangle } from "./figures.js";
+const figureList = [ring, circle, elipse, square, hollowSquare, rectangle];
 
 //variables
 const figureImg = document.querySelector(".figure-img");
