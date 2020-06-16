@@ -55,7 +55,7 @@ export const elipse = {
 
 export const square = {
   name: "square",
-  src: "./img/default.jpg",
+  src: "./img/square.png",
   values: {
     H: "H",
   },
@@ -71,7 +71,7 @@ export const square = {
 
 export const hollowSquare = {
   name: "hollow square",
-  src: "./img/default.jpg",
+  src: "./img/hollow-square.png",
   values: {
     H: "H",
     h: "h",
@@ -89,7 +89,7 @@ export const hollowSquare = {
 
 export const rectangle = {
   name: "rectangle",
-  src: "./img/default.jpg",
+  src: "./img/rectangle.png",
   values: {
     b: "b",
     h: "h",
